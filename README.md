@@ -26,9 +26,13 @@ python pgt.py
 python train_unet.py
 ```
 
+## LDGP
+
+![image](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/img2.png)
+
 ## Deraining Results
 
-![image](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/Figure1.png)
+![image](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/img1.png)
 
 
 ## Citation
