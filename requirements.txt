@@ -1,0 +1,6 @@
+scikit-image
+tqdm
+tensorboard
+torch
+torchvision
+torchaudio
