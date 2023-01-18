@@ -28,7 +28,7 @@ python train_unet.py
 
 ## Deraining Results
 
-![alt text](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/Figure1.png?raw=true)
+![alt text](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/Figure1.png?raw=true| width=100)
 
 
 ## Citation
