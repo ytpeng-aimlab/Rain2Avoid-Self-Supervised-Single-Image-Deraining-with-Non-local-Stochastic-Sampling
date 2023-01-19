@@ -30,7 +30,11 @@ python train_unet.py
 
 ## LDGP
 
-![image](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/img2.png)
+<details>
+<summary><strong>LDGP on Rain100L&DDN-SIRR</strong> (click to expand) </summary>
+<img src = "https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/img2.png"> 
+</details>
+
 
 ## Deraining Results
 <details>
