@@ -51,8 +51,18 @@ python train_unet.py
 
 ## Deraining Results
 <details>
-<summary><strong>Deraining on Rain100L</strong> (click to expand) </summary>
+<summary><strong>Qualitative Result on Rain100L</strong> (click to expand) </summary>
 <img src = "https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/img1.png"> 
+</details>
+
+<details>
+<summary><strong>Quantitative Result on Rain100L</strong> (click to expand) </summary>
+<img src = "https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/result_rain100L.png"> 
+</details>
+
+<details>
+<summary><strong>Quantitative Result on Rain800, DDN-SIRR</strong> (click to expand) </summary>
+<img src = "https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/result_DDN.png"> 
 </details>
 
 ## Citation
