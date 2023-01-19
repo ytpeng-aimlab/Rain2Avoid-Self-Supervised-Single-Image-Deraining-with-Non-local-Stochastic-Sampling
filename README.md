@@ -19,8 +19,13 @@ pip install -r requirements.txt
 
 * **Rain1400(DDN-Data)**: 12600 training pairs and 1400 test pairs *[[paper](http://openaccess.thecvf.com/content_cvpr_2017/papers/Fu_Removing_Rain_From_CVPR_2017_paper.pdf)][[dataset](https://xueyangfu.github.io/projects/cvpr2017.html)] (2017 CVPR)*
 
-
-
+- Please prepare your datsets follow the struture as bellow.
+```
+./dataset/Rain100L
++--- test
+|   +--- rainy
+|   +--- gt
+```
 
 ## Command
 - Locally Dominant Gradient Prior (LDGP)
