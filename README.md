@@ -33,8 +33,9 @@ python train_unet.py
 ![image](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/img2.png)
 
 ## Deraining Results
-
-![image](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/img1.png)
-
+<details>
+<summary><strong>Deraining on Rain100L</strong> (click to expand) </summary>
+<img src = "https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/img1.png"> 
+</details>
 
 ## Citation
