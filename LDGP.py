@@ -99,7 +99,7 @@ if __name__ == '__main__':
     mask_path = './LDGP/'+dataset+'/mask/'
     
     try:
-        os.mkdir(mask_path)
+        os.makedirs(mask_path)
     except:
         pass
 
