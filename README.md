@@ -7,7 +7,7 @@ a single image, attracting much attention in the field. Recent research on this 
 
 ## Framework
 
-![image](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/arch.png)
+![image](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/framework.png)
 
 ## Installation
 ```
