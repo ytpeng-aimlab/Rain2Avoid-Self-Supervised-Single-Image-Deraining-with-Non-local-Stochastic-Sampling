@@ -32,7 +32,7 @@ pip install -r requirements.txt
 ```
 python LDGP.py 
 ```
-- Generate Pseudo Ground Truth
+- Generate Stochastic Derained References
 ```
 python pgt.py
 ```
