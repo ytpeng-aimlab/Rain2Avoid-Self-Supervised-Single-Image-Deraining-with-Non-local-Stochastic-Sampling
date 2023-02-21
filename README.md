@@ -30,11 +30,11 @@ pip install -r requirements.txt
 ## Command
 - Locally Dominant Gradient Prior (LDGP)
 ```
-python LDGP.py 
+python generate_ldgp.py 
 ```
 - Generate Stochastic Derained References
 ```
-python pgt.py
+python generate_sdr.py
 ```
 - Self-Supervised
 ```
