@@ -56,11 +56,11 @@ for batch in tqdm(data_loader):
     
     for j in range(epochs):
         for k, inner_batch in enumerate(SDR_loader):
-            pgt_images = inner_batch
-            pgt_images = pgt_images.to(device)
-            images = torch.cat([rainy_images for _ in range(len(pgt_images))],0)
+            sdr_images = inner_batch
+            sdr_images = sdr_images.to(device)
+            images = torch.cat([rainy_images for _ in range(len(sdr_images))],0)
             net_output = model(images)
-            loss = loss_function(net_output, pgt_images)
+            loss = loss_function(net_output, sdr_images)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
