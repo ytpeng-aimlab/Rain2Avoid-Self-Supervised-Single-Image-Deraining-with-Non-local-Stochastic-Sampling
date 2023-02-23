@@ -4,3 +4,6 @@ tensorboard
 torch
 torchvision
 torchaudio
+argparse
+opencv-python
+matplotlib

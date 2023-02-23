@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+import argparse
 
 def hog(img, show= True, save="", cell_size = (8, 8), num_cells_per_block = (4, 4)): 
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -93,10 +94,15 @@ def rotate(img, theta):
     rotated = cv2.warpAffine(img,M,(bound_w,bound_h),borderValue=(255,255,255))
     return rotated
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--rainy_data_path", type=str, default="./dataset/Rain100L/test/input/", help='path to input data')
+parser.add_argument("--ldgp_result_path", type=str, default="./dataset/Rain100L/test/ldgp/", help='path to save ldgp data')
+opt = parser.parse_args()
+
 if __name__ == '__main__':
-    dataset = 'Rain100L/test'
-    input_path = './dataset/'+dataset+'/rainy/'
-    mask_path = './LDGP/'+dataset+'/mask/'
+    
+    input_path = opt.rainy_data_path
+    mask_path = opt.ldgp_result_path
     
     try:
         os.makedirs(mask_path)

@@ -10,7 +10,7 @@ def train_dataloader(image_dir, batch_size=64, num_workers=0, use_transform=True
     if use_transform:
         transform = None
     dataloader = DataLoader(
-        Dataset(image_dir, transform=transform),
+        RainDataset(image_dir, transform=transform),
         batch_size=batch_size,
         shuffle=False,
         num_workers=num_workers,
@@ -21,7 +21,7 @@ def train_dataloader(image_dir, batch_size=64, num_workers=0, use_transform=True
 
 def test_dataloader(image_dir, batch_size=1, num_workers=0):
     dataloader = DataLoader(
-        Dataset(image_dir, is_test=True),
+        RainDataset(image_dir, is_test=True),
         batch_size=batch_size,
         shuffle=False,
         num_workers=num_workers,
@@ -29,13 +29,13 @@ def test_dataloader(image_dir, batch_size=1, num_workers=0):
     )
     return dataloader
 
-class Dataset(Dataset):
+class RainDataset(Dataset):
     def __init__(self, image_dir, transform=None, is_test=False):
         self.image_dir = image_dir
         self.transform = transform
         self.is_test = is_test
-        self.image_list = os.listdir(os.path.join(image_dir, 'rainy/')) 
-        self._check_image(self.image_list) # 檢查檔案類型
+        self.image_list = os.listdir(os.path.join(image_dir, 'input/')) 
+        self._check_image(self.image_list)
         self.label_list = list()
         for i in range(len(self.image_list)):
             filename = self.image_list[i]
@@ -47,21 +47,15 @@ class Dataset(Dataset):
         return len(self.image_list)
     
     def __getitem__(self, idx):
-        image = Image.open(os.path.join(self.image_dir, 'rainy', self.image_list[idx])).convert("RGB")
-        label = Image.open(os.path.join(self.image_dir, 'gt', self.label_list[idx])).convert("RGB")
-        # mask = Image.open(os.path.join(self.image_dir, 'mask', self.label_list[idx])).convert("RGB")
-        
+        image = Image.open(os.path.join(self.image_dir, 'input', self.image_list[idx])).convert("RGB")
+        label = Image.open(os.path.join(self.image_dir, 'target', self.label_list[idx])).convert("RGB")
         if self.transform:
-            # image, label, mask = self.transform(image, label, mask)
             image, label = self.transform(image, label)
         else:
             image = F.to_tensor(image)
             label = F.to_tensor(label)
-            #mask = F.to_tensor(mask)
-
         
         name = self.image_list[idx]
-        # return image, label, mask, name
         return image, label, name
         
     
@@ -73,9 +67,9 @@ class Dataset(Dataset):
                 raise ValueError
 
 
-def PGT_dataloader(path, batch_size=1, num_workers=0):
+def SDR_dataloader(path, batch_size=1, num_workers=0):
     dataloader = DataLoader(
-        PGT_Dataset(path),
+        SDR_Dataset(path),
         batch_size=batch_size,
         shuffle=False,
         num_workers=num_workers,
@@ -84,12 +78,12 @@ def PGT_dataloader(path, batch_size=1, num_workers=0):
     return dataloader
 
 
-class PGT_Dataset(Dataset):
+class SDR_Dataset(Dataset):
     def __init__(self, image_dir, transform=None):
         self.image_dir = image_dir
         self.transform = transform
         self.image_list = os.listdir(os.path.join(image_dir)) 
-        self._check_image(self.image_list) # 檢查檔案類型
+        self._check_image(self.image_list)
         self.image_list.sort()
         
     def __len__(self):

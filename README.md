@@ -28,17 +28,32 @@ pip install -r requirements.txt
 ```
 
 ## Command
+### Method 1: (Generate stochastic derained references off-line)
 - Locally Dominant Gradient Prior (LDGP)
 ```
-python generate_ldgp.py 
+python generate_ldgp.py --rainy_data_path "./dataset/Rain100L/test/input/" --ldgp_result_path "./dataset/Rain100L/test/ldgp/"
 ```
 - Generate Stochastic Derained References
 ```
-python generate_sdr.py
+python generate_sdr.py --rainy_data_path "./dataset/Rain100L/test/input/" --ldgp_data_path "./dataset/Rain100L/test/ldgp/" --sdr_result_path "./dataset/Rain100L/test/sdr/"
 ```
 - Self-Supervised
 ```
-python train_unet.py
+python train_unet.py --rainy_data_path "./dataset/Rain100L/test/" --sdr_data_path "./dataset/Rain100L/test/sdr/" --result_path "./result/Rain100L/test/"
+```
+### Method 2: (Generate stochastic derained references while training (on-line))
+- Locally Dominant Gradient Prior (LDGP)
+```
+python generate_ldgp.py --rainy_data_path "./dataset/Rain100L/test/input/" --ldgp_result_path "./dataset/Rain100L/test/ldgp/"
+```
+- Self-Supervised
+```
+python train_unet_v2.py
+```
+
+### Evaluation
+```
+python cal_psnr_ssim.py
 ```
 
 ## LDGP
