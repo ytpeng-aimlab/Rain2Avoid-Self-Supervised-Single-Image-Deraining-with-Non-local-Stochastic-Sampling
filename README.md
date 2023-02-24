@@ -48,7 +48,7 @@ python generate_ldgp.py --rainy_data_path "./dataset/Rain100L/test/input/" --ldg
 ```
 - Self-Supervised
 ```
-python train_unet_v2.py
+python train_unet_v2.py --rainy_data_path "./dataset/Rain100L/test/" --sdr_data_path "./dataset/Rain100L/test/sdr/" --result_path "./result/Rain100L/test/"
 ```
 
 ### Evaluation
