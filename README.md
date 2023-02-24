@@ -1,5 +1,5 @@
 # Rain2Avoid Self Supervised Single Image Deraining
-[![](https://img.shields.io/badge/<arXiv>-<Paper>-<green>)]()
+[![](https://img.shields.io/badge/arXiv-Paper-green)]()
 
 Pytorch Implementation of "Rain2Avoid: Self-Supervised Single Image Deraining"
 
