@@ -48,7 +48,7 @@ python sdr.py --input_path="./dataset/Rain100L/input/" --ldgp_path="./dataset/Ra
 
 ### 3. Stochastic Derained Referenced Learning (SDRL) (Single Self-supervised Training Strategy)
 ```
-python sdrl.py --rainy_data_path="./dataset/Rain100L/" --sdr_data_path="./dataset/Rain100L/sdr/" --result_path="./dataset/Rain100L/result/" --sdr_data_path="Unet"
+python sdrl.py --rainy_data_path="./dataset/Rain100L/" --sdr_data_path="./dataset/Rain100L/sdr/" --result_path="./dataset/Rain100L/result/" --backbone="Unet"
 ```
 
 - One can use different backbone with --backbone (Options: "Unet", "ResNet", "DnCNN", "Restormer", "DRSFormer")
