@@ -1,15 +1,19 @@
-# Rain2Avoid Self Supervised Single Image Deraining (ICASSP 2023)
-[![](https://img.shields.io/badge/arXiv-Paper-green)]()
+# Rain2Avoid: Self Supervised Single Image Deraining (ICASSP 2023)
+[![](https://img.shields.io/badge/arXiv-Paper-green)](https://ieeexplore.ieee.org/document/10097092)
 
 Pytorch Implementation of "Rain2Avoid: Self-Supervised Single Image Deraining"
 
 ## Introduction
-The single image deraining task aims to remove rain from
-a single image, attracting much attention in the field. Recent research on this topic primarily focuses on discriminative deep learning methods, which train models on rainy images with their clean counterparts. However, collecting such paired images for training takes much work. Thus, we present Rain2Avoid (R2A), a training scheme that requires only rainy images for image deraining. We propose a locally dominant gradient prior to reveal possible rain streaks and overlook those rain pixels while training with the input rainy image directly. Understandably, R2A may not perform as well as deraining methods that supervise their models with rain-free ground truth. However, R2A favors when training image pairs are unavailable and can self-supervise only one rainy image for deraining. Experimental results show that the proposed method performs favorably against state-of-the-art few-shot deraining and self-supervised denoising methods.
+It is common to take pictures outside; however, the weather may not be good. If we shoot the picture on a rainy day, we might capture rain streaks in the image.
+Image deraining is one of the image processing tasks, trying to remove the rain streaks on the image. Most works in these years apply a supervised image-deraining method, which relies on rainy-clean image pairs to train.
+However, collecting such pairwise images is strenuous and time-consuming. Therefore, some works generated synthetic rainy images, making it easier to get lots of pairwise images. However, using synthetic images to train a deraining model may not work well on real rainy images.
+
+This paper presents a novel self-supervised method based on locally dominant gradient prior (LDGP) and non-local stochastic sampling (NSS) based on self-similarity which can respectively extract the potential rain streak and generate the stochastic derain reference. With the help of LDGP and NSS, we can self-supervise only one single image for image deraining.
+Extensive experiments on synthetic and real image datasets validate the potential of our self-supervised image-deraining method.
 
 ## Framework
 
-![image](https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/framework.png)
+<img src="./img/scheme.png" alt="drawing" style="width:800px;"/>
 
 ## Installation
 ```
@@ -24,45 +28,48 @@ pip install -r requirements.txt
 - Please prepare your datsets follow the struture as bellow.
 ```
 ./dataset/Rain100L
-+--- test
-|   +--- rainy
-|   +--- gt
++--- input
++--- target
++--- ldgp (after run ldgp.py)
++--- sdr  (after run sdr.py)
++--- result (after run sdrl.py)
 ```
 
-## Command
-### Method 1: (Generate stochastic derained references off-line)
-- Locally Dominant Gradient Prior (LDGP)
+## Command 
+### 1. Locally Dominant Gradient Prior (LDGP)
 ```
-python generate_ldgp.py --rainy_data_path "./dataset/Rain100L/test/input/" --ldgp_result_path "./dataset/Rain100L/test/ldgp/"
-```
-- Generate Stochastic Derained References
-```
-python generate_sdr.py --rainy_data_path "./dataset/Rain100L/test/input/" --ldgp_data_path "./dataset/Rain100L/test/ldgp/" --sdr_result_path "./dataset/Rain100L/test/sdr/"
-```
-- Self-Supervised
-```
-python train_unet.py --rainy_data_path "./dataset/Rain100L/test/" --sdr_data_path "./dataset/Rain100L/test/sdr/" --result_path "./result/Rain100L/test/"
-```
-### Method 2: (Generate stochastic derained references while training (on-line))
-- Locally Dominant Gradient Prior (LDGP)
-```
-python generate_ldgp.py --rainy_data_path "./dataset/Rain100L/test/input/" --ldgp_result_path "./dataset/Rain100L/test/ldgp/"
-```
-- Self-Supervised
-```
-python train_unet_v2.py --rainy_data_path "./dataset/Rain100L/test/" --sdr_data_path "./dataset/Rain100L/test/sdr/" --result_path "./result/Rain100L/test/"
+python ldgp.py --dataset="Rain100L" --patch_size=80 --kernel_size=10
 ```
 
-### Evaluation
+### 2. Non-local Stochastic Sampling (NSS)
 ```
-python cal_psnr_ssim.py
+python sdr.py --input_path="./dataset/Rain100L/input/" --ldgp_path="./dataset/Rain100L/ldgp/" --save_path "./dataset/Rain100L/sdr/" --fuse_save_path "./dataset/Rain100L/sdr(fuse)/"
 ```
 
-## LDGP
+### 3. Stochastic Derained Referenced Learning (SDRL) (Single Self-supervised Training Strategy)
+```
+python sdrl.py --rainy_data_path="./dataset/Rain100L/" --sdr_data_path="./dataset/Rain100L/sdr/" --result_path="./dataset/Rain100L/result/" --sdr_data_path="Unet"
+```
+
+- One can use different backbone with --backbone (Options: "Unet", "ResNet", "DnCNN", "Restormer", "DRSFormer")
+
+### 3. Stochastic Derained Referenced Learning (SDRL) (Multiple Self-supervised Training Strategy)
+
+### - Train
+```
+python sdrl_all.py --rainy_data_path="./dataset/Rain100L/" --sdr_data_path="./dataset/Rain100L/sdr/" --result_path="./dataset/Rain100L/result/"
+```
+### - Inference
+```
+python test_all.py --data_path="./dataset/Rain100L/" --model_path="./result_all/Rain100L/model.pkl" --result_path="./result_all/Rain100L/image/"
+```
+
+
+## Qualitative result of LDGP
 
 <details>
 <summary><strong>LDGP on Rain100L&DDN-SIRR</strong> (click to expand) </summary>
-<img src = "https://github.com/ytpeng-aimlab/Rain2Avoid-Self-Supervised-Single-Image-Deraining/blob/master/img/img2.png"> 
+<img src = "./img/ldgp.png"> 
 </details>
 
 
