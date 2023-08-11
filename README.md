@@ -1,5 +1,5 @@
 # Rain2Avoid: Self Supervised Single Image Deraining (ICASSP 2023)
-[![](https://img.shields.io/badge/IEEE-Paper-blue)](https://ieeexplore.ieee.org/document/10097092)
+[![](https://img.shields.io/badge/arxiv-Paper-green)]()
 
 Pytorch Implementation of "Rain2Avoid: Self-Supervised Single Image Deraining"
 
