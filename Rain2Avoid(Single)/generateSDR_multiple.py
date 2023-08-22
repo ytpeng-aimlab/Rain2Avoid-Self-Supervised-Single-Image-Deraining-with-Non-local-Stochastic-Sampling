@@ -92,13 +92,13 @@ ldgp_intensity_threshold = 10
 
 def generate_sdr(noise_images, mask, device, sdr_num):
    
-   print(noise_images)
+   # print(noise_images)
    # tensor > numpy array
    rainy_image = np.clip(noise_images[0].permute(1,2,0).detach().cpu().numpy(), 0, 1)*255
    ldgp_image = np.clip(mask[0].permute(1,2,0).detach().cpu().numpy(), 0, 1)*255
 
-   print(rainy_image.shape)
-   print(ldgp_image.shape)
+   # print(rainy_image.shape)
+   # print(ldgp_image.shape)
 
    
 
@@ -126,7 +126,7 @@ def generate_sdr(noise_images, mask, device, sdr_num):
             
    # exit()
    print("Finish Generate SDR")
-   print(return_images.shape)
+   # print(return_images.shape)
    # numpy array > tensor
    r = list()
 
@@ -134,7 +134,7 @@ def generate_sdr(noise_images, mask, device, sdr_num):
       each_tensor = F.to_tensor(return_images[num]).float().to(device).unsqueeze(0)
       each_tensor = each_tensor/255
       # print(each_tensor.shape)
-      print(each_tensor)
+      # print(each_tensor)
       # each_tensor = each_tensor.permute(1,2,0).to(device)
       
       r.append(each_tensor)
