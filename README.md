@@ -1,4 +1,4 @@
-# Rain2Avoid-Self-Supervised-Single-Image-Deraining-with-Non-local-Stochastic-Sampling
+# Rain2Avoid: Learning Deraining by Self-Supervision, IEEE Transactions on Multimedia, 2025
 [![](https://img.shields.io/badge/arxiv-Paper-green)]()
 
 Pytorch Implementation of "Rain2Avoid: Self-Supervised Single Image Deraining"
